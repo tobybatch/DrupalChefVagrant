@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "public_network"
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", "512"]
   end
 
   
@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "build-essential"
     chef.add_recipe "git"
     chef.add_recipe "vim"
-    # chef.add_recipe "apache"
+    chef.add_recipe "apache2"
     # chef.add_recipe "mysql"
     # chef.add_recipe "php"
     # chef.add_recipe "drush"
