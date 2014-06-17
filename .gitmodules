@@ -37,3 +37,6 @@
 [submodule "cookbooks/pacman"]
 	path = cookbooks/pacman
 	url = https://github.com/opscode-cookbooks/pacman.git
+[submodule "cookbooks/apache2"]
+	path = cookbooks/apache2
+	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
