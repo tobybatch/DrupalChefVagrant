@@ -61,3 +61,6 @@
 [submodule "cookbooks/composer"]
 	path = cookbooks/composer
 	url = https://github.com/escapestudios-cookbooks/composer.git
+[submodule "cookbooks/drush"]
+	path = cookbooks/drush
+	url = https://github.com/msonnabaum/chef-drush.git

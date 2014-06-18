@@ -24,8 +24,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # change our mounted folder 
   config.vm.synced_folder "html/", "/var/www/html"
-  
+
   config.vm.provision "chef_solo" do |chef|
+    chef.log_level = :debug
+
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
     chef.add_recipe "git"
@@ -36,9 +38,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "php"
     chef.add_recipe "apache2::mod_php5";
     chef.add_recipe "composer"
-    chef.add_recipe "chef-drush"
-    # chef.add_recipe "drush"
+    chef.add_recipe "drush"
     # chef.add_recipe "drupal"
+
+    chef.json = {
+      "drupal" => {
+        "manifest" => "",
+        "dburl" => "mysql://drupal:drupal@host/drupal",
+        "adminname" => "superadmin",
+        "adminpass" => "ilikerandompasswords",
+        "workingcopy" => "true"
+      }
+    }
+
   end
 
 end
