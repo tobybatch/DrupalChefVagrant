@@ -58,3 +58,6 @@
 [submodule "cookbooks/chef-sugar"]
 	path = cookbooks/chef-sugar
 	url = https://github.com/sethvargo/chef-sugar.git
+[submodule "cookbooks/composer"]
+	path = cookbooks/composer
+	url = https://github.com/escapestudios-cookbooks/composer.git

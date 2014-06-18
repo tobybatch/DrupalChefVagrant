@@ -22,6 +22,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "512"]
   end
 
+  # change our mounted folder 
+  config.vm.synced_folder "html/", "/var/www/html"
   
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "apt"
@@ -32,7 +34,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "mysql::client"
     chef.add_recipe "mysql::server"
     chef.add_recipe "php"
-    chef.add_recipe("apache2::mod_php5");
+    chef.add_recipe "apache2::mod_php5";
+    chef.add_recipe "composer"
+    chef.add_recipe "chef-drush"
     # chef.add_recipe "drush"
     # chef.add_recipe "drupal"
   end
