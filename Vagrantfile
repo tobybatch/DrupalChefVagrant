@@ -57,7 +57,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "adminname" => "superadmin",
         "adminpass" => "ilikerandompasswords",
         "workingcopy" => true,
-        "delpoy_key" => "File.read('/etc/hosts')"
       },
       "mysql" => {
         "server_root_password" => "ilikerandompasswords",

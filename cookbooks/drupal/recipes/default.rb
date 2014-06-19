@@ -1,10 +1,18 @@
 require_recipe "ntdrush"
 
 # clean /var/www/html
-# directory "/var/www/html/drupal" do
-    # action :delete
-    # recursive true
-# end
+directory "/var/www/html/drupal" do
+    action :delete
+    recursive true
+end
+
+# Set up keys
+execute "mv /tmp/keys/id_rsa /root/.ssh/id_rsa" do
+    not_if { File.exist?("/root/.ssh/id_rsa") }
+end
+execute "mv /tmp/keys/id_rsa.pub /root/.ssh/id_rsa.pub" do
+    not_if { File.exist?("/root/.ssh/id_rsa.pub") }
+end
 
 dburl = node['drupal']['dburl']
 adminacc = node["drupal"]["adminname"]
@@ -15,7 +23,6 @@ workingcopy = node["drupal"]["workingcopy"]
 
 # run ntdc
 if workingcopy
-    Chef::Log.warn("################################################################ ntdc -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest}")
     bash "working_drupal" do
         code <<-EOH
             ntdc -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest}
