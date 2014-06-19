@@ -7,11 +7,14 @@ directory "/var/www/html/drupal" do
 end
 
 # Set up keys
-execute "mv /tmp/keys/id_rsa /root/.ssh/id_rsa" do
-    not_if { File.exist?("/root/.ssh/id_rsa") }
+execute "cp /tmp/keys/id_rsa $HOME/.ssh/id_rsa" do
+    not_if { File.exist?("$HOME/.ssh/id_rsa") }
 end
-execute "mv /tmp/keys/id_rsa.pub /root/.ssh/id_rsa.pub" do
-    not_if { File.exist?("/root/.ssh/id_rsa.pub") }
+execute "cp /tmp/keys/id_rsa.pub $HOME/.ssh/id_rsa.pub" do
+    not_if { File.exist?("$HOME/.ssh/id_rsa.pub") }
+end
+execute "cp /tmp/keys/known_hosts $HOME/.ssh/known_hosts" do
+    not_if { File.exist?("$HOME/.ssh/known_hosts") }
 end
 
 dburl = node['drupal']['dburl']
@@ -25,16 +28,16 @@ workingcopy = node["drupal"]["workingcopy"]
 if workingcopy
     bash "working_drupal" do
         code <<-EOH
-            ntdc -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest}
-            echo ntdc -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest} > /var/tmp/cmd
-            echo #{node["drupal"]["delpoy_key"]} > /var/tmp/key
+            ntdc -v -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest} > /var/log/drupal.log
+            echo ntdc -v -w -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest} > /var/tmp/cmd
         EOH
         action :run
     end
 else
     bash "deploy_drupal" do
         code <<-EOH
-            ntdc -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest}
+            ntdc -v -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest} > /var/log/drupal.log
+            echo ntdc -v -u #{dburl} -n #{adminacc} -p #{adminpass} -m root:#{sqlrootpass} -t /var/www/html/drupal #{manifest} > /var/tmp/cmd
         EOH
         action :run
     end

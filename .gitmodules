@@ -70,3 +70,9 @@
 [submodule "cookbooks/partial_search"]
 	path = cookbooks/partial_search
 	url = https://github.com/opscode-cookbooks/partial_search.git
+[submodule "cookbooks/varnish"]
+	path = cookbooks/varnish
+	url = https://github.com/opscode-cookbooks/varnish.git
+[submodule "cookbooks/zip"]
+	path = cookbooks/zip
+	url = https://github.com/phlipper/chef-zip.git

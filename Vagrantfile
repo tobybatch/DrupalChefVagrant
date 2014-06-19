@@ -39,6 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "build-essential"
     chef.add_recipe "git"
     chef.add_recipe "vim"
+    chef.add_recipe "zip"
     chef.add_recipe "apache2"
     chef.add_recipe "mysql::client"
     chef.add_recipe "mysql::server"
