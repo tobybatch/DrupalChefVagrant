@@ -1,5 +1,5 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
+# vi: set ft=ruby ts=2 sw=4 :
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -38,16 +38,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "php"
     chef.add_recipe "apache2::mod_php5";
     chef.add_recipe "composer"
-    chef.add_recipe "drush"
-    # chef.add_recipe "drupal"
+    chef.add_recipe "ntdrush"
+    chef.add_recipe "neondc"
+    chef.add_recipe "drupal"
 
     chef.json = {
       "drupal" => {
-        "manifest" => "",
+        "manifest" => "http://192.168.21.95/manifest/vanillafudge.manifest",
         "dburl" => "mysql://drupal:drupal@host/drupal",
         "adminname" => "superadmin",
         "adminpass" => "ilikerandompasswords",
-        "workingcopy" => "true"
+        "workingcopy" => true
+      },
+      "mysql" => {
+        "server_root_password" => "ilikerandompasswords",
+        "server_debian_password" => "postinstallscriptsarestupid",
+        "allow_remote_root" => false,
+        "remove_anonymous_users" => true
       }
     }
 
