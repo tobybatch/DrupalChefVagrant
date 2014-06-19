@@ -64,3 +64,9 @@
 [submodule "cookbooks/drush"]
 	path = cookbooks/drush
 	url = https://github.com/msonnabaum/chef-drush.git
+[submodule "cookbooks/ssh_known_hosts"]
+	path = cookbooks/ssh_known_hosts
+	url = https://github.com/opscode-cookbooks/ssh_known_hosts.git
+[submodule "cookbooks/partial_search"]
+	path = cookbooks/partial_search
+	url = https://github.com/opscode-cookbooks/partial_search.git
