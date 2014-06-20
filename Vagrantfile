@@ -12,6 +12,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 80, host: 8808
   # config.vm.network :forwarded_port, guest: 443, host: 4443
 
+  # Enable this to get a private host ony network, so all the ports will be avaiable but only to the hosting machine
+  # config.vm.network "private_network", ip: "192.168.50.4"
+
   # This bridges the adapter, the VM will appear as real machine on your network
   # config.vm.network "public_network"
 
@@ -19,7 +22,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.provision :shell, :path => "provision.sh"
 
   config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    # Set memory and CPU count
+    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2", "--ioapic", "on"]
   end
 
   # change our mounted folder - only indlude this for development
@@ -40,13 +44,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "git"
     chef.add_recipe "vim"
     chef.add_recipe "zip"
-    chef.add_recipe "apache2"
+    chef.add_recipe "apache2" # This is a custom fork that handles apache 2.4 while opscode catches up.
     chef.add_recipe "mysql::client"
     chef.add_recipe "mysql::server"
     chef.add_recipe "php"
     chef.add_recipe "apache2::mod_php5";
-    chef.add_recipe "ssh_known_hosts"
+    chef.add_recipe "apache2::mod_rewrite";
+    # chef.add_recipe "ssh_known_hosts" # Doesn't work on chef solo
     chef.add_recipe "composer"
+
+    # Below here are our custom recipes.  Unly tested on ubuntu 14.04 but should work on other *nix
     chef.add_recipe "ntdrush"
     chef.add_recipe "neondc"
     chef.add_recipe "drupal"
@@ -54,25 +61,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.json = {
       "drupal" => {
         "manifest" => "http://192.168.21.95/manifest/vanillafudge.manifest",
-        "dburl" => "mysql://drupal:drupal@host/drupal",
+        "dburl" => "mysql://drupal:drupal@localhost/drupal",
         "adminname" => "superadmin",
         "adminpass" => "ilikerandompasswords",
         "workingcopy" => true,
+        "user" => "vagrant",
+        "group" => "vagrant"
       },
       "mysql" => {
         "server_root_password" => "ilikerandompasswords",
         "server_debian_password" => "postinstallscriptsarestupid",
         "allow_remote_root" => false,
         "remove_anonymous_users" => true
-      },
-      "ssh_known_hosts" => {
-          "known_hosts" => {
-              "fqdn" => "github.com",
-              "rsa" => "github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
-          }
       }
     }
 
+   # Disabled as chef_solo doesnot support ssh_known_hosts
+   #  "ssh_known_hosts" => {
+   #      "known_hosts" => {
+   #          "fqdn" => "github.com",
+   #          "rsa" => "github.com,192.30.252.128 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ=="
+   #      }
+   #  }
   end
 
 end

@@ -3,3 +3,5 @@ default[:drupal][:dburl]       = "mysql://drupal:drupal@host/drupal"
 default[:drupal][:adminname]   = "superadmin"
 default[:drupal][:adminpass]   = "ilikerandompasswords"
 default[:drupal][:workingcopy] = true
+default[:drupal][:user]        = "vagrant"
+default[:drupal][:group]       = "vagrant"

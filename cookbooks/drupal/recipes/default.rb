@@ -24,6 +24,39 @@ sqlrootpass = node["mysql"]["server_root_password"]
 manifest = node["drupal"]["manifest"]
 workingcopy = node["drupal"]["workingcopy"]
 
+
+package "php-apc" do
+      action :install
+end
+
+package "php5-gd" do
+      action :install
+end
+
+package "php5-curl" do
+      action :install
+end
+
+package "php5-mysql" do
+      action :install
+end
+
+package "php5-imagick" do
+      action :install
+end
+
+package "php5-memcache" do
+      action :install
+end
+
+package "php5-memcached" do
+      action :install
+end
+
+package "ruby-compass" do
+      action :install
+end
+
 # run ntdc
 if workingcopy
     bash "working_drupal" do
@@ -44,3 +77,16 @@ else
 end
 
 # reset permissions
+bash "working_drupal" do
+    code <<-EOH
+        ntresetperms -y #{node["drupal"]["user"]} #{node["drupal"]["group"]} #{node["apache"]["user"]} #{node["apache"]["group"]} -p /var/www/html/drupal
+    EOH
+    action :run
+end
+
+directory "/tmp" do
+    owner "root"
+    group "root"
+    mode 01777
+    action :create
+end
