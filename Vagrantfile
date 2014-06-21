@@ -75,6 +75,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "remove_anonymous_users" => true
       },
       "apache" => {
+          "default_site_enabled" => false,
           "user" => "vagrant",
           "group" => "vagrant"
       }
