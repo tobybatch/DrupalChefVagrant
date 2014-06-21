@@ -90,3 +90,11 @@ directory "/tmp" do
     mode 01777
     action :create
 end
+
+web_app 'drupal' do
+    template 'site.conf.erb'
+end
+
+apache_site "default" do
+    enable false
+end

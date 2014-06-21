@@ -73,6 +73,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "server_debian_password" => "postinstallscriptsarestupid",
         "allow_remote_root" => false,
         "remove_anonymous_users" => true
+      },
+      "apache" => {
+          "user" => "vagrant",
+          "group" => "vagrant"
       }
     }
 

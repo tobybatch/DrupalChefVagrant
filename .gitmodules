@@ -37,9 +37,6 @@
 [submodule "cookbooks/pacman"]
 	path = cookbooks/pacman
 	url = https://github.com/opscode-cookbooks/pacman.git
-[submodule "cookbooks/apache2"]
-	path = cookbooks/apache2
-	url = git@github.com:tobybatch/apache2.4.git
 [submodule "cookbooks/mysql"]
 	path = cookbooks/mysql
 	url = https://github.com/opscode-cookbooks/mysql.git
@@ -76,3 +73,6 @@
 [submodule "cookbooks/zip"]
 	path = cookbooks/zip
 	url = https://github.com/phlipper/chef-zip.git
+[submodule "cookbooks/apache2"]
+	path = cookbooks/apache2
+	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
