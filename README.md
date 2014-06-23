@@ -1,6 +1,10 @@
 DrupalChefVagrant
 =================
 
+## Sub Modules
+
+You must ```submodule init && submodule update```
+
 ## Quick start
 
  1. Change directory into this folder
@@ -8,6 +12,12 @@ DrupalChefVagrant
  1. Run ```vagrant up```
 
 This will create a vanilla fudge site in a VM. The drupal you created will be available on http://localhost:8808, the files for that site are in ./html/drupal
+
+## Troubleshhoting
+
+ 1. Have you cloned the submodules?
+ 1. Have you linked/copied keys into the keys folder
+ 1. Have you added your pyblic key to the NT Deploy user (nt-deploy)
 
 ## Customising
 
