@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
     # Set memory and CPU count
-    vb.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2", "--ioapic", "on"]
+    vb.customize ["modifyvm", :id, "--memory", "4096", "--cpus", "4", "--ioapic", "on"]
   end
 
   # change our mounted folder - only indlude this for development
@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "keys/", "/tmp/keys"
 
   config.vm.provision "chef_solo" do |chef|
-    chef.log_level = :debug
+    chef.log_level = :warn
 
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
