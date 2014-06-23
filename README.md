@@ -1,5 +1,9 @@
-DrupalChefVagrant
-=================
+LymebayDeploy 
+=============
+
+## Sub Modules
+
+You must ```submodule init && submodule update```
 
 ## Quick start
 
@@ -9,8 +13,6 @@ DrupalChefVagrant
 
 This will create a vanilla fudge site in a VM. The drupal you created will be available on http://localhost:8808, the files for that site are in ./html/drupal
 
-## Customising
+## More info
 
-It's all in the Vagrant file...
-
-
+See the root project readme: https://github.com/tobybatch/DrupalChefVagrant

@@ -60,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     chef.json = {
       "drupal" => {
-        "manifest" => "http://192.168.21.95/manifest/vanillafudge.manifest",
+        "manifest" => "http://192.168.21.95/manifest/lymebayholidays.manifest",
         "dburl" => "mysql://drupal:drupal@localhost/drupal",
         "adminname" => "superadmin",
         "adminpass" => "ilikerandompasswords",
