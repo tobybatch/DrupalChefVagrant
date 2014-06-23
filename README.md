@@ -23,4 +23,9 @@ This will create a vanilla fudge site in a VM. The drupal you created will be av
 
 It's all in the Vagrant file...
 
+## Updating your site without a full rebuild
+
+The command used to create your site is stored in /var/tmp/cmd, so ```cat /var/tmp/cmd,``` will show you the command.  Because of keys you'll need to run it as root:
+
+    sudo su - -c `cat /var/tmp/cmd`
 
