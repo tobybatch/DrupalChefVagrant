@@ -76,3 +76,12 @@
 [submodule "cookbooks/apache2"]
 	path = cookbooks/apache2
 	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
+[submodule "cookbooks/neondc"]
+	path = cookbooks/neondc
+	url = git@github.com:tobybatch/chef-neondc.git
+[submodule "cookbooks/ntdrush"]
+	path = cookbooks/ntdrush
+	url = git@github.com:tobybatch/chef-ntdrush.git
+[submodule "cookbooks/drupal"]
+	path = cookbooks/drupal
+	url = git@github.com:tobybatch/chef-drupal.git
