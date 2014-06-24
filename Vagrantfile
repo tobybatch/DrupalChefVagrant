@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder "keys/", "/tmp/keys"
 
   config.vm.provision "chef_solo" do |chef|
-    chef.log_level = :debug
+    chef.log_level = :info
 
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
@@ -57,6 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "ntdrush"
     chef.add_recipe "neondc"
     chef.add_recipe "drupal"
+    chef.add_recipe "varnish"
 
     chef.json = {
       "drupal" => {
@@ -78,6 +79,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           "default_site_enabled" => false,
           "user" => "vagrant",
           "group" => "vagrant"
+      },
+      "varnish" => {
+          "backend_port" => "80"
       }
     }
 
