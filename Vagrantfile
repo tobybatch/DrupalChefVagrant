@@ -9,12 +9,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
   # Use NAT'd networking
-  config.vm.network :forwarded_port, guest: 80, host: 8808
-  config.vm.network :forwarded_port, guest: 9000, host: 9000
+  # config.vm.network :forwarded_port, guest: 80, host: 8808
+  # config.vm.network :forwarded_port, guest: 9000, host: 9000
   # config.vm.network :forwarded_port, guest: 443, host: 4443
 
   # Enable this to get a private host ony network, so all the ports will be avaiable but only to the hosting machine
-  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.network "private_network", ip: "192.168.20.4"
 
   # This bridges the adapter, the VM will appear as real machine on your network
   # config.vm.network "public_network"
