@@ -65,48 +65,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "chef_solo" do |chef|
     chef.log_level = :warn
 
-    chef.add_recipe "apt"
-    chef.add_recipe "build-essential"
-    chef.add_recipe "git"
-    chef.add_recipe "vim"
-    chef.add_recipe "zip"
-    chef.add_recipe "apache2" # This is a custom fork that handles apache 2.4 while opscode catches up.
-    chef.add_recipe "mysql::client"
-    chef.add_recipe "mysql::server"
-    chef.add_recipe "php"
-    chef.add_recipe "apache2::mod_php5";
-    chef.add_recipe "apache2::mod_rewrite";
-    # chef.add_recipe "ssh_known_hosts" # Doesn't work on chef solo
-    chef.add_recipe "composer"
-
-    # Below here are our custom recipes.  Unly tested on ubuntu 14.04 but should work on other *nix
-    chef.add_recipe "ntdrush"
-    chef.add_recipe "neondc"
-    chef.add_recipe "drupal"
-
-    chef.json = {
-      "drupal" => {
-        "manifest" => "http://192.168.21.95/manifest/lymebayholidays.manifest",
-        "dburl" => "mysql://drupal:drupal@localhost/drupal",
-        "adminname" => "superadmin",
-        "adminpass" => "ilikerandompasswords",
-        "workingcopy" => true,
-        "user" => "vagrant",
-        "group" => "vagrant",
-        "apiserver" => "lb.api.carltonsoftware.co.uk:80"
-      },
-      "mysql" => {
-        "server_root_password" => "ilikerandompasswords",
-        "server_debian_password" => "postinstallscriptsarestupid",
-        "allow_remote_root" => false,
-        "remove_anonymous_users" => true
-      },
-      "apache" => {
-          "default_site_enabled" => false,
-          "user" => "vagrant",
-          "group" => "vagrant"
-      }
-    }
+    VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('vagrant.json').read)
+    chef.run_list = VAGRANT_JSON.delete('run_list')
+    chef.json = VAGRANT_JSON
 
    # Disabled as chef_solo doesnot support ssh_known_hosts
    #  "ssh_known_hosts" => {
