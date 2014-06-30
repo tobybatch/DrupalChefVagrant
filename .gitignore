@@ -1,2 +1,6 @@
 keys/*
-.vagrant
+.vagrant/
+html/drupal/
+html/index.html
+/nbproject/private/
+html/profiler

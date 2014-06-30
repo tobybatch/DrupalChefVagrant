@@ -1,5 +1,5 @@
-DrupalChefVagrant
-=================
+LymebayDeploy 
+=============
 
 ## Sub Modules
 
@@ -8,24 +8,21 @@ You must ```submodule init && submodule update```
 ## Quick start
 
  1. Change directory into this folder
+ 1. Do a ```git submodule init && git submodule update```
  1. Copy/link your keys for git hub into the keys folder.  These will be installed onto the VM so don't use ones with passwords
  1. Run ```vagrant up```
 
 This will create a vanilla fudge site in a VM. The drupal you created will be available on http://localhost:8808, the files for that site are in ./html/drupal
 
-## Troubleshhoting
+## Deploying
 
- 1. Have you cloned the submodules?
- 1. Have you linked/copied keys into the keys folder
- 1. Have you added your pyblic key to the NT Deploy user (nt-deploy)
+ 1. clone this repo
+ 2. Do a ```git submodule init && git submodule update```
+ 3. ```export REMOTE_HOST=1.2.3.4```
+ 4. ```rsync -a --progress . root@$REMOTE_HOST:/var/chef```
+ 5. set up key access for root user and make sure those keys are able to clone our private repos
+ 6. ```ssh root@$REMOTE_HOST "chef-solo -c /var/chef/cookbooks/solo.rb"```
 
-## Customising
+## More info & Troubleshhoting
 
-It's all in the Vagrant file...
-
-## Updating your site without a full rebuild
-
-The command used to create your site is stored in /var/tmp/cmd, so ```cat /var/tmp/cmd,``` will show you the command.  Because of keys you'll need to run it as root:
-
-    sudo su - -c `cat /var/tmp/cmd`
-
+See the root project readme: https://github.com/tobybatch/DrupalChefVagrant
