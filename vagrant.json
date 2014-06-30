@@ -15,9 +15,7 @@
         "recipe[mysql::server]",
         "recipe[php]",
         "recipe[apache2::mod_php5]",
-        "recipe[apache2::mod_rewrite]",
-        "recipe[gems]",
-        "recipe[ntdeploy]"
+        "recipe[apache2::mod_rewrite]"
     ]
 }
 
