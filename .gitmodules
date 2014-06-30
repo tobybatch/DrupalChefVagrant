@@ -82,6 +82,9 @@
 [submodule "cookbooks/ntdrush"]
 	path = cookbooks/ntdrush
 	url = git@github.com:tobybatch/chef-ntdrush.git
-[submodule "cookbooks/drupal"]
-	path = cookbooks/drupal
-	url = git@github.com:tobybatch/chef-drupal.git
+[submodule "cookbooks/gems"]
+	path = cookbooks/gems
+	url = https://github.com/opscode-cookbooks/gems.git
+[submodule "cookbooks/rsync"]
+	path = cookbooks/rsync
+	url = https://github.com/opscode-cookbooks/rsync.git
