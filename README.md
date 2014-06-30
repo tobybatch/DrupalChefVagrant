@@ -17,12 +17,26 @@ This will create a vanilla fudge site in a VM. The drupal you created will be av
 ## Deploying
 
  1. clone this repo
- 2. Do a ```git submodule init && git submodule update```
- 3. ```export REMOTE_HOST=1.2.3.4```
- 4. ```rsync -a --exclude=html --exclude=keys --exclude=nbproject --progress . root@$REMOTE_HOST:/var/chef```
- 5. set up key access for root user and make sure those keys are able to clone our private repos
- 6. ```ssh root@$REMOTE_HOST "chef-solo -c /var/chef/cookbooks/solo.rb"```
+ 1. Do a ```git submodule init && git submodule update```
+ 1. ```export REMOTE_HOST=1.2.3.4```
+ 1. ```ssh root@$REMOTE_HOST "apt-get -y update && apt-get -y install ruby1.9.1-full make && gem install chef ruby-shadow --no-ri --no-rdoc"``` **Add these to a recipie**
+ 1. ```rsync -a --exclude=html --exclude=keys --exclude=nbproject --progress . root@$REMOTE_HOST:/var/chef```
+ 1. <del>set up key access for root user and make sure those keys are able to clone our private repos</del>
+ 1. ```ssh root@$REMOTE_HOST "chef-solo -c /var/chef/cookbooks/solo.rb"```
+ 1. Copy your deb file onto the server and install it
+ 1. Disable the curretn site and enable the new site in apache
 
-## More info & Troubleshhoting
+## Troubleshhoting
 
-See the root project readme: https://github.com/tobybatch/DrupalChefVagrant
+ 1. Have you cloned the submodules?
+
+## Customising
+
+It's all in the Vagrant file...
+
+## Updating your site without a full rebuild
+
+The command used to create your site is stored in /var/tmp/cmd, so ```cat /var/tmp/cmd,``` will show you the command.  Because of keys you'll need to run it as root:
+
+    sudo su - -c `cat /var/tmp/cmd`
+
