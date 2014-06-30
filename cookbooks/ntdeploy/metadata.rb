@@ -1,5 +1,0 @@
-name 'ntdeploy'
-maintainer 'Neontribe'
-maintainer_email 'support@neontribe.co.uk'
-license 'Apache 2.0'
-description 'Tweaks a finished chef deployed server ready for chef solo'
