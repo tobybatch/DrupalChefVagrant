@@ -76,15 +76,9 @@
 [submodule "cookbooks/apache2"]
 	path = cookbooks/apache2
 	url = https://github.com/onehealth-cookbooks/apache2-onehealth.git
-[submodule "cookbooks/ntdrush"]
-	path = cookbooks/ntdrush
-	url = git@github.com:tobybatch/chef-ntdrush.git
-<<<<<<< HEAD
 [submodule "cookbooks/chef-cottage-server-post-install"]
 	path = cookbooks/chef-cottage-server-post-install
 	url = git@github.com:tobybatch/chef-cottage-server-post-install.git
-=======
 [submodule "cookbooks/haproxy"]
 	path = cookbooks/haproxy
 	url = https://github.com/hw-cookbooks/haproxy.git
->>>>>>> 05e837664d2456bd4744d59ca4d567be37fa6a3d
