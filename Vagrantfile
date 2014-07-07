@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # end
 
   config.vm.provision "chef_solo" do |chef|
-    chef.log_level = :warn
+    chef.log_level = :debug
 
     VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('vagrant.json').read)
     chef.run_list = VAGRANT_JSON.delete('run_list')
