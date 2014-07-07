@@ -2,7 +2,7 @@
     "mysql": {
         "allow_remote_root": false,
         "remove_anonymous_users": true,
-        "server_root_password": "P1nYcOnHdY6JhQTMr3BcmeS4",
+        "server_root_password": "P1nYcOnHdY6JhQTMr3BcmeS4"
     },
     "varnish": {
         "backend_port": 80
@@ -19,9 +19,10 @@
         "recipe[php]",
         "recipe[apache2::mod_php5]",
         "recipe[apache2::mod_rewrite]",
-        "recipe[ntdrush],
-        "recipe[[varnish],
-        "recipe[[haproxy]
+        "recipe[chef-ntdrush]",
+        "recipe[varnish]",
+        "recipe[haproxy]",
+        "recipe[chef-cottage-server-post-install]"
     ]
 }
 
