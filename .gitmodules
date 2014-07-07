@@ -82,3 +82,6 @@
 [submodule "cookbooks/ntdrush"]
 	path = cookbooks/ntdrush
 	url = git@github.com:tobybatch/chef-ntdrush.git
+[submodule "cookbooks/chef-cottage-server-post-install"]
+	path = cookbooks/chef-cottage-server-post-install
+	url = git@github.com:tobybatch/chef-cottage-server-post-install.git
