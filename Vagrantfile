@@ -8,6 +8,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "trusty32"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-i386-vagrant-disk1.box"
 
+  config.vm.network "public_network"
+
   # config.ssh.private_key_path = "~/.ssh/id_rsa"
   # config.vm.provider :digital_ocean do |provider|
       # provider.client_id = "Vagrant Deployment"

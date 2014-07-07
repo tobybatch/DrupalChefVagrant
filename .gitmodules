@@ -82,3 +82,6 @@
 [submodule "cookbooks/haproxy"]
 	path = cookbooks/haproxy
 	url = https://github.com/hw-cookbooks/haproxy.git
+[submodule "cookbooks/cpu"]
+	path = cookbooks/cpu
+	url = https://github.com/Youscribe/cpu-cookbook.git

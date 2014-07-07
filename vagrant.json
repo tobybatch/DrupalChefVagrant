@@ -7,6 +7,9 @@
     "varnish": {
         "backend_port": 80
     },
+    "haproxy": {
+        "incoming_port": 8008
+    },
     "run_list": [
         "recipe[apt]",
         "recipe[build-essential]",
@@ -19,7 +22,6 @@
         "recipe[php]",
         "recipe[apache2::mod_php5]",
         "recipe[apache2::mod_rewrite]",
-        "recipe[chef-ntdrush]",
         "recipe[varnish]",
         "recipe[haproxy]",
         "recipe[chef-cottage-server-post-install]"
